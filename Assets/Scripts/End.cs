@@ -31,6 +31,8 @@ public class End : MonoBehaviour {
 		}
 
 		if (startCount) {
+
+            //quit game after player has had time to read final message
 			if (Time.realtimeSinceStartup - startTime > 1) {
 				Vector3 x = end.position;
 				end.position = new Vector3(428f, x.y, x.z);

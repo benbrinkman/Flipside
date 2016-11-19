@@ -8,19 +8,17 @@ public class Jump : MonoBehaviour {
 
 	private float lastTime;
 	private Rigidbody2D rb;
-
-	// Use this for initialization
+    
 	void Start () {
 		lastTime = Time.realtimeSinceStartup;
 
 		rb = GetComponent<Rigidbody2D> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		Vector2 forceUp = new Vector2(-1, 0);
-
+        //gravity
 		if (Time.realtimeSinceStartup - lastTime > timeJump) {
 			Vector2 force = forceUp * forceApplied;
 			rb.AddForce(force);

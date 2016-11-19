@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
 
 	void OnGUI() {
 		if (dead) {
-			// Update death stuff
+			// Fade screen on player death
 			if (deadStage) {
 				alphaFade += Mathf.Clamp01 (Time.deltaTime / deathTime);
 				GUI.color = new Color (0, 0, 0, alphaFade);
@@ -71,8 +71,11 @@ public class Player : MonoBehaviour {
 	void Update () 
 	{ 
 		if (dead) {
+            //stop player movement
 			playerRigidbody.velocity = new Vector2(0,0);
 
+
+            //start death stage
 			if (deathStart == 0) {
 				deadStage = true;
 				deathStart = Time.realtimeSinceStartup;
@@ -82,10 +85,11 @@ public class Player : MonoBehaviour {
 
 				anim.SetBool("Dead", true);
 			}
-
+            //after fade is complete, put player at last spawnpoint
 			if (Time.realtimeSinceStartup - deathStart > deathTime / 2 && deadStage) {
 				transform.position = respawn;
 
+                //give camera correct position and rotation of current spawn point
 				if (respawnNum == 0 || respawnNum == 1) {
 					playerRotation = 0;
 					camera.transform.localEulerAngles = new Vector3 (0, 0, 0);
@@ -112,8 +116,11 @@ public class Player : MonoBehaviour {
 			//checkBox (new Vector2(40, -6), new Vector2(82, 205), 90);
 			//checkBox (new Vector2(10, 205), new Vector2(60, 215), 180);
 
+            //make aure player is always as the correct rotation
 			transform.localEulerAngles = new Vector3 (0, 0, playerRotation);
 
+
+            //keys for testing rotation
 			if (Input.GetKey ("1")) {
 				playerRotation = 0;
 			} else if (Input.GetKey ("2")) {
@@ -124,9 +131,12 @@ public class Player : MonoBehaviour {
 				playerRotation = 270;
 			}
 
+
+            //keep track of time while in air to get acceleration due to gravity
 			if (!grounded)
 				time++;
 
+            //running the correct gravity code based on player rotation
 			if (playerRotation == 0) {
 				UpdatePosY ();
 			} else if (playerRotation == 90) {
@@ -172,19 +182,23 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
+        //if player hits a gravity changer, change gravity to correct direction
 		if (col.CompareTag ("Grav")) {
 			playerRotation = col.GetComponentInParent<GravTrigger> ().upAngle;
 			camera.transform.Rotate (new Vector3 (0, 0, 1));
-
+            //change music based on biome/rotation
 			musicPlayer.GetComponent<Music> ().selectMusic (col.GetComponentInParent<GravTrigger> ().song);
 		} else if (col.CompareTag ("Checkpoint") && !col.GetComponentInParent<Checkpoints> ().isTriggered ()) {
+            //activate checkpoints and update player respawn location
 			col.GetComponentInParent<Checkpoints> ().trigger ();
 
 			respawn = respawnLocs [++respawnNum].transform.position;
 		} else if (col.CompareTag ("Elevator")) {
+            //if player hits the elevater block, cause player to follow elevator -- see ElevatorRun script
 			GameObject.Find("Elevator").GetComponent<ElevatorRun>().startElevator();
 		}
 	}
+
 
 	void checkBox(Vector2 p1, Vector2 p2, int playerRot){
 		camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera> ();
@@ -193,7 +207,7 @@ public class Player : MonoBehaviour {
 			playerRotation = playerRot % 360;
 
 			//if (playerRot != 90)
-			
+			//update camera --copied code from above
 			Vector2 newUp = new Vector2(0,0);
 			switch (playerRot)
 			{

@@ -7,7 +7,7 @@ public class particles : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        //fade in and out based on time
 		foreach (SpriteRenderer g in GetComponentsInChildren<SpriteRenderer>())
 		{
 			Color c = g.color;

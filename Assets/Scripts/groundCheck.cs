@@ -34,6 +34,7 @@ public class groundCheck : MonoBehaviour {
 */
 	void OnTriggerStay2D(Collider2D col)
 	{
+        //if ground checker hits somthing that it should interact with, ground player
 		if (!col.CompareTag ("Grav") && !col.CompareTag("Respawn") && !col.CompareTag("Checkpoint") && !col.CompareTag("StopAI")) {
 			player.grounded = true;
 			player.time = 0;

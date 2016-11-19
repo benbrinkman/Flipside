@@ -19,7 +19,7 @@ public class PlatformController : MonoBehaviour {
 
 
 	void Start () {
-		//base.Start ();
+		//get positions in world from the on positions based on location of the start
 		globalWaypoints = new Vector3[localWaypoints.Length];
 		for (int i = 0; i < localWaypoints.Length; i++) {
 			globalWaypoints[i] = localWaypoints[i] + transform.position;
@@ -36,16 +36,19 @@ public class PlatformController : MonoBehaviour {
 
 	float Ease(float x)
 	{
+        //control the ease time selecter in the inspector
 		float a = easeAmount + 1;
 		return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1 - x, a));
 	}
 
 	
 	Vector3 CalculatePlatformMovement(){
+        //if reached destination, don't move
 		if (Time.time < nextMoveTime)
 		{
 			return Vector3.zero;
 		}
+        //get platform speed based on location from waypoints
 		fromWaypointIndex %= globalWaypoints.Length;
 		int toWaypointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
 		float distanceBetweenWaypoints = Vector3.Distance (globalWaypoints [fromWaypointIndex], globalWaypoints [toWaypointIndex]);
@@ -74,6 +77,7 @@ public class PlatformController : MonoBehaviour {
 	}
 
 	void OnDrawGizmos(){
+        //draw onscreen too visualize where the waypoints are
 		if (localWaypoints !=null) {
 			Gizmos.color=Color.green;
 			float size = .3f;

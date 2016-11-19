@@ -17,8 +17,8 @@ public class CameraFollow : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
+        //follow player position and location
 		float posX = Mathf.SmoothDamp (transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
 		float posy = Mathf.SmoothDamp (transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
 

@@ -7,15 +7,13 @@ public class Chase : MonoBehaviour {
 	public float speed;
 
 	private Rigidbody2D rb;
-
-	// Use this for initialization
+    
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
+        //Make Jerry the lava monster follow the player
 		Vector2 dif = player.position - rb.transform.position;
 		dif.Normalize ();
 		dif *= speed;

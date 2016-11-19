@@ -8,19 +8,19 @@ public class ElevatorRun : MonoBehaviour {
 	private bool running, finished;
 	float tempx;
 	float tempy;
-
-	// Use this for initialization
+    
 	void Start () {
 		running = false;
 		finished = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (running && !finished) {
-
+            //check how close player is to end
 			Vector3 movement = end.position - transform.position;// new Vector2(0, 1);//end.position - transform.position;
-			tempx = transform.position.x;
+
+            //I am not acctually sure what these temp variables do but I am too scared to delete them
+            tempx = transform.position.x;
 			tempy = transform.position.y;
 			//transform.position.x = tempy;
 			//transform.position.y = tempx;
