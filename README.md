@@ -19,3 +19,5 @@ Music Created by
 The game is playable on Matt's website [here](http://magneseus.com/flipside/) using [Unity Web Player](https://unity3d.com/webplayer). Does not run with Chrome.
 
 Our Global Game Jam page can be viewed [here](http://globalgamejam.org/2016/games/flipside)
+
+Source code in Assets > Scripts
