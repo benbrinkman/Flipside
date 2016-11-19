@@ -3,6 +3,7 @@
 Flipside is a platformer game developed in Unity during the span of 48 hours for the [2016 Global Game Jam](http://globalgamejam.org/). 
 The game has different sections that will change gravity and your surroundings to create challenges in ways not often seen in platformer games.
 
+
 The game was coded by:
 * Ben Brinkman
 * Matt Mayer
