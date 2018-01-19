@@ -20,4 +20,6 @@ The game is playable on Matt's website [here](http://magneseus.com/flipside/) us
 
 Our Global Game Jam page can be viewed [here](http://globalgamejam.org/2016/games/flipside)
 
+Gameplay footage can be seen [here](https://www.youtube.com/watch?v=E48uT0LrG4U)
+
 Source code in Assets > Scripts
